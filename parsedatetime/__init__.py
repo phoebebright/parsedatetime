@@ -2599,9 +2599,12 @@ class Constants(object):
         else:
             self.RE_TIMEHMS2 += r'\b'
 
+        #PHB don't want force include - . as separators as they pick up decimals like 12.5
         # Always support common . and - separators
+        # dateSeps = ''.join(re.escape(s)
+        #                    for s in self.locale.dateSep + ['-', '.'])
         dateSeps = ''.join(re.escape(s)
-                           for s in self.locale.dateSep + ['-', '.'])
+                           for s in self.locale.dateSep)
 
         self.RE_DATE = r'''([\s(\["'-]|^)
                            (?P<date>
